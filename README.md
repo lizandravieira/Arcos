@@ -1,4 +1,4 @@
-<h1>Projeto 2<h1>
+<h1>ARCOS<h1>
   
 <h2>Descrição</h2>
 
