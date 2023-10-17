@@ -35,4 +35,5 @@ A equipe resolveu utilizar o método de programação "Pair Programming", tendo 
 
 <h3>Issue / Bug Tracker</h3>
 
-![image](https://github.com/lizandravieira/Arcos/assets/132586951/ef27111b-e60d-46e8-996c-6835871f341b)
+![image](https://github.com/lizandravieira/Arcos/assets/134390540/da595651-7157-4f5d-a954-14a9bfb8a231)
+
