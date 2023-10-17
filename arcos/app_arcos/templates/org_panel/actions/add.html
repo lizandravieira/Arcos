@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Arcos - Registro</title>
+    <title>Arcos - Painel ONG</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -54,7 +54,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light ">
+      <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container">
           <a class="navbar-brand font-brand me-5" href="{% url 'index' %}">
             <svg
@@ -106,14 +106,33 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  href="{% url 'index' %}"
+                  href="{% url 'org_panel_index' %}"
                   aria-current="page"
                   >Página inicial
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="#" aria-current="page"
-                  >Entrar <span class="visually-hidden">(atual)</span>
+                  >Contato<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'org_panel_actions_index' %}" aria-current="page"
+                  >Ações<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item mt-1">
+                <p class="">Logado como: {{org_name}}
+                </p>
+              </li>
+              <li class="nav-item ms-lg-5 ">
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger rounded">
+                  Sair
                 </a>
               </li>
             </ul>
@@ -122,60 +141,46 @@
       </nav>
     </header>
     <main>
-      <div class="">
-        <div
-          class="container d-flex justify-content-center align-items-center"
-          style="height: 100vh"
-        >
-
-
-          <form
-            class="p-5 bg-light rounded shadow"
-            action="{% url 'register' %}"
-            method="POST"
-          >
+      <div class="mt-5 text-center w-100 h-100 d-flex align-items-center justify-content-center">
+        <div class="" style="max-width:fit-content;">
+          <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
-              <label for="org_name" class="form-label">Nome organização</label>
-              <input
-                type="text"
-                class="form-control"
-                id="org_name"
-                name="org_name"
-                placeholder="EJVF Org"
-              />
+              <label for="title" class="form-label">Título</label>
+              <input type="text" name="title" id="title" class="form-control" placeholder="ex. Ação de limpeza" value="{{ title|default:'' }}" aria-describedby="titleHelp">
+              <small id="titleHelp" class="form-text text-muted">Insira o título da ação.</small>
             </div>
             <div class="mb-3">
-              <label for="username" class="form-label">Nome de usuário</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                name="username"
-                placeholder="ejvf_org"
-              />
+              <label for="day" class="form-label">Dia</label>
+              <input type="number" name="day" id="day" class="form-control" placeholder="ex. 01" value="{{ day|default:'' }}" aria-describedby="dayHelp">
+              <small id="dayHelp" class="form-text text-muted">Insira o dia da ação.</small>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">E-mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="ex. euri@arcos.com"
-              />
+              <label for="month" class="form-label">Mês</label>
+              <input type="number" name="month" id="month" class="form-control" placeholder="ex. 01" value="{{ month|default:'' }}" aria-describedby="monthHelp">
+              <small id="monthHelp" class="form-text text-muted">Insira o mês da ação.</small>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Senha</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                placeholder="Sua senha"
-              />
+              <label for="year" class="form-label">Ano</label>
+              <input type="number" name="year" id="year" class="form-control" placeholder="ex. 2022" value="{{ year|default:'' }}" aria-describedby="yearHelp">
+              <small id="yearHelp" class="form-text text-muted">Insira o ano da ação.</small>
             </div>
-            <button type="submit" class="btn btn-dark">Criar conta</button>
+            <div class="mb-3">
+              <label for="image" class="form-label">Imagem</label>
+              <input type="file" name="image" id="image" class="form-control" placeholder="ex. imagem.jpg" value="{{ image|default:'' }}" aria-describedby="imageHelp">
+              <small id="imageHelp" class="form-text text-muted">Insira a imagem da ação.</small>
+            </div>
+            <div class="mb-3">
+              <label for="attachments" class="form-label">Anexos</label>
+              <input type="file" name="attachments" id="attachments" class="form-control" placeholder="ex. anexo.pdf" value="{{ attachments|default:'' }}" aria-describedby="attachmentsHelp">
+              <small id="attachmentsHelp" class="form-text text-muted">Insira os anexos da ação.</small>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Descrição</label>
+              <textarea name="description" id="description" class="form-control" placeholder="ex. Ação de limpeza nas margens do rio" aria-describedby="descriptionHelp">{{ description|default:'' }}</textarea>
+              <small id="descriptionHelp" class="form-text text-muted">Insira a descrição da ação.</small>
+            </div>
+            <button type="submit" class="btn btn-dark">Salvar</button>
           </form>
         </div>
       </div>

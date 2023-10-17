@@ -28,6 +28,21 @@
       .font-brand {
         font-weight: 700;
       }
+      nav {
+        background-color: rgb(47, 121, 104) !important;
+      }
+      .btn-dark {
+        color: #FFF;
+        background-color: rgb(232, 60,59) !important;
+        border-color: rgb(232, 60,59) !important;
+      }
+      
+      .btn-dark:hover {
+        
+        color: #FFF !important;;
+        background-color: rgb(143, 32, 32) !important;
+        border-color: rgb(143, 32, 32) !important;
+      }
 
       svg {
         width: 100%;
@@ -38,7 +53,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container">
           <a class="navbar-brand font-brand me-5" href="#">
             <svg
@@ -115,7 +130,7 @@
           veritatis quae enim ipsa error earum dicta cum. Iusto accusantium
           eaque molestiae!
         </p>
-        <a href="{% url 'login' %}" class="btn btn-dark rounded">
+        <a href="{% url 'login' %}" class="btn btn-dark rounded ">
           Crie sua plataforma
         </a>
       </div>

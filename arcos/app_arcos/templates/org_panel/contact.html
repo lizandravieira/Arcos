@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Arcos - Registro</title>
+    <title>Arcos - Painel ONG</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -34,7 +34,6 @@
         height: auto;
         max-width: 120px;
       }
-
       nav {
         background-color: rgb(47, 121, 104) !important;
       }
@@ -54,7 +53,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light ">
+      <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container">
           <a class="navbar-brand font-brand me-5" href="{% url 'index' %}">
             <svg
@@ -106,14 +105,33 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  href="{% url 'index' %}"
+                  href="{% url 'org_panel_index' %}"
                   aria-current="page"
                   >Página inicial
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="#" aria-current="page"
-                  >Entrar <span class="visually-hidden">(atual)</span>
+                  >Contato<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'org_panel_actions_index' %}" aria-current="page"
+                  >Ações<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item mt-1">
+                <p class="">Logado como: {{org_name}}
+                </p>
+              </li>
+              <li class="nav-item ms-lg-5 ">
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger rounded">
+                  Sair
                 </a>
               </li>
             </ul>
@@ -122,60 +140,31 @@
       </nav>
     </header>
     <main>
-      <div class="">
-        <div
-          class="container d-flex justify-content-center align-items-center"
-          style="height: 100vh"
-        >
-
-
-          <form
-            class="p-5 bg-light rounded shadow"
-            action="{% url 'register' %}"
-            method="POST"
-          >
+      <div class="mt-5 text-center w-100 h-100 d-flex align-items-center justify-content-center">
+        <div class="" style="max-width:fit-content;">
+          <form method="POST">
             {% csrf_token %}
             <div class="mb-3">
-              <label for="org_name" class="form-label">Nome organização</label>
-              <input
-                type="text"
-                class="form-control"
-                id="org_name"
-                name="org_name"
-                placeholder="EJVF Org"
-              />
+              <label for="email" class="form-label">E-mail para contato</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="ex. euri@arcos.com" value="{{ email|default:'' }}" aria-describedby="emailHelp">
+              <small id="emailHelp" class="form-text text-muted">Insira um e-mail válido para contato.</small>
             </div>
             <div class="mb-3">
-              <label for="username" class="form-label">Nome de usuário</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                name="username"
-                placeholder="ejvf_org"
-              />
+              <label for="telefone" class="form-label">Telefone para contato</label>
+              <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="ex. (00) 00000-0000" value="{{ phone|default:'' }}" aria-describedby="telefoneHelp">
+              <small id="telefoneHelp" class="form-text text-muted">Insira um telefone válido para contato.</small>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">E-mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="ex. euri@arcos.com"
-              />
+              <label for="instagram" class="form-label">Instagram</label>
+              <input type="text" name="instagram" id="instagram" class="form-control" placeholder="ex. @arcos" value="{{ instagram|default:'' }}" aria-describedby="instagramHelp">
+              <small id="instagramHelp" class="form-text text-muted">Insira o nome de usuário do Instagram.</small>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Senha</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                placeholder="Sua senha"
-              />
+              <label for="facebook" class="form-label">Facebook</label>
+              <input type="text" name="facebook" id="facebook" class="form-control" placeholder="ex. /arcos" value="{{ facebook|default:'' }}" aria-describedby="facebookHelp">
+              <small id="facebookHelp" class="form-text text-muted">Insira o nome de usuário ou URL da página do Facebook.</small>
             </div>
-            <button type="submit" class="btn btn-dark">Criar conta</button>
+            <button type="submit" class="btn btn-dark">Salvar</button>
           </form>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Arcos - Registro</title>
+    <title>Arcos - Painel ONG</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -35,7 +35,40 @@
         max-width: 120px;
       }
 
-      nav {
+      .actions-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.action-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.action-image img {
+  width: 100%;
+  height: auto;
+}
+
+.action-details {
+  padding: 10px;
+}
+
+.action-details h2 {
+  margin-top: 0;
+}
+
+.attachments a {
+  display: block;
+  margin-bottom: 5px;
+}
+
+nav {
         background-color: rgb(47, 121, 104) !important;
       }
       .btn-dark {
@@ -54,7 +87,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light ">
+      <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container">
           <a class="navbar-brand font-brand me-5" href="{% url 'index' %}">
             <svg
@@ -106,14 +139,33 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  href="{% url 'index' %}"
+                  href="{% url 'org_panel_index' %}"
                   aria-current="page"
                   >Página inicial
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link active" href="{% url 'org_panel_contact' %}" aria-current="page"
+                  >Contato<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a class="nav-link active" href="#" aria-current="page"
-                  >Entrar <span class="visually-hidden">(atual)</span>
+                  >Ações<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item mt-1">
+                <p class="">Logado como: {{org_name}}
+                </p>
+              </li>
+              <li class="nav-item ms-lg-5 ">
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger rounded">
+                  Sair
                 </a>
               </li>
             </ul>
@@ -122,62 +174,30 @@
       </nav>
     </header>
     <main>
-      <div class="">
-        <div
-          class="container d-flex justify-content-center align-items-center"
-          style="height: 100vh"
-        >
+      <div class="mt-5 text-center w-100 h-100 d-flex flex-column align-items-center justify-content-center">
 
+  <a href="{% url 'org_panel_actions_create' %}" class="btn btn-outline-dark rounded mb-5">
+    Criar ação
+  </a>
 
-          <form
-            class="p-5 bg-light rounded shadow"
-            action="{% url 'register' %}"
-            method="POST"
-          >
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="org_name" class="form-label">Nome organização</label>
-              <input
-                type="text"
-                class="form-control"
-                id="org_name"
-                name="org_name"
-                placeholder="EJVF Org"
-              />
+        <div class="actions-container align-items-center justify-content-center mb-5">
+          {% for action in actions %}
+            <div class="action-card">
+              <div class="action-image">
+                <img src="{{ action.image.url }}" alt="{{ action.title }}">
+              </div>
+              <div class="action-details">
+                <h2>{{ action.title }}</h2>
+                <p>{{ action.description }}</p>
+                <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
+                <div class="attachments">
+                  {% for attachment in action.attachments.all %}
+                    <a href="{{ attachment.file.url }}" target="_blank">{{ attachment.file.name }}</a><br>
+                  {% endfor %}
+                </div>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="username" class="form-label">Nome de usuário</label>
-              <input
-                type="text"
-                class="form-control"
-                id="username"
-                name="username"
-                placeholder="ejvf_org"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">E-mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="ex. euri@arcos.com"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Senha</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                placeholder="Sua senha"
-              />
-            </div>
-            <button type="submit" class="btn btn-dark">Criar conta</button>
-          </form>
-        </div>
+          {% endfor %}
       </div>
     </main>
     <footer>

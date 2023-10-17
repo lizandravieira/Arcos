@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Arcos</title>
+    <title>Arcos - Entrar</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -34,11 +34,27 @@
         height: auto;
         max-width: 120px;
       }
+
+      nav {
+        background-color: rgb(47, 121, 104) !important;
+      }
+      .btn-dark {
+        color: #FFF;
+        background-color: rgb(232, 60,59) !important;
+        border-color: rgb(232, 60,59) !important;
+      }
+      
+      .btn-dark:hover {
+        
+        color: #FFF !important;;
+        background-color: rgb(143, 32, 32) !important;
+        border-color: rgb(143, 32, 32) !important;
+      }
     </style>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <nav class="navbar navbar-expand-sm navbar-light ">
         <div class="container">
           <a class="navbar-brand font-brand me-5" href="{% url 'index' %}">
             <svg
@@ -137,7 +153,7 @@
                 placeholder="Sua senha"
               />
             </div>
-            <button type="submit" class="btn btn-dark">Log in</button>
+            <button type="submit" class="btn btn-dark">Entrar</button>
 
             <div class="text-center mt-3 -mb-1">
               <a href="{% url 'register' %}" class="">Não tenho uma conta</a>
