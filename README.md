@@ -18,13 +18,14 @@
 <h2>📦1ª Entregas:</h2>
 <h3>Print do Quadro do Jira</h3>
 
-![Painel](https://github-production-user-asset-6210df.s3.amazonaws.com/132586951/275679355-fc155b25-c64d-495d-9e80-7825cafe753e.png)
-![Backlog](https://github.com/lizandravieira/Arcos/assets/132586951/7496eb0a-ad6b-4b6a-a368-5ec1c82a47b1)
+![Painel](https://github.com/lizandravieira/Arcos/assets/134390540/7d678904-a9d9-4f7e-b5b4-207cfd804403)
+![Backlog](https://github.com/lizandravieira/Arcos/assets/134390540/cdb474e6-1d9f-4753-a90a-270e838d8a69)
+
 
 
 
 <h3>Screencast</h3>
-<p><a href ="">Link do Screencast </a></p>
+<p><a href ="https://drive.google.com/file/d/1JeCzKC759LdaSOMQU4-QmLqL3ddQnGUw/view?usp=drive_link">Screencast Protótipo de baixa</a></p>
 
 <h3>Diagrama de Atividades</h3>
 <p><a href ="https://drive.google.com/file/d/1PAPQffs5lLTP3oMV-2TcF-feMmw8PFOa/view?usp=sharing">Link do Diagrama </a></p>
