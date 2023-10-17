@@ -37,6 +37,12 @@
 ### 3.1) Link 
 [https://arcos.azurewebsites.net/](https://arcos.azurewebsites.net/)
 ### 3.2) Instruções de acesso:
+a) Clone o repositório utilizando o comando "git clone https://github.com/lizandravieira/Arcos"<br>
+b) Acesse o diretório  utilizando o comando "cd arcos"<br>
+c) Instale as dependências utilizando o comando no terminal pip install -r requirements.txt<br>
+d) Utilize o comando python manage.py makemigrations e em seguida o comando python manage.py migrate<br>
+e) Para acessar o site em si, pode-se fazer de duas maneiras: localmente, caso queira utilize o comando python manage.py runserver, ou pelo link público disponibilizado acima (hospedado na azure).
+
 
 
 
