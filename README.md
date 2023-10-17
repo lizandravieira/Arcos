@@ -4,7 +4,7 @@
   
 <h2>🤝Colaboradores:</h2>
 <p><a href="https://github.com/alecct812">Alec Theotônios</a> | 
-<p><a href="https://github.com/TheEuri">Eurivaldo Vasconselos</a> |
+<p><a href="https://github.com/TheEuri">Eurivaldo Vasconcelos</a> |
 <p><a href="https://github.com/Felipeserpa01">Felipe Serpa</a> |
 <p><a href="https://github.com/gabrielgrm">Gabriel Rodrigues</a> | 
 <p><a href="https://github.com/lizandravieira">Lizandra Vieira</a> |
