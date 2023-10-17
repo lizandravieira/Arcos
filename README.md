@@ -16,4 +16,12 @@
 <p><a href=                                                                     >Link Protótipo Lo-fi no figma </a></p>
 
 <h2>📦1ª Entregas:</h2>
+<h3>Screencast</h3>
+<p><a href ="">Link do Screencast </a></p>
+
+<h3>Diagrama de Atividades</h3>
+<p><a href ="">Link do Diagrama </a></p>
+
+<h3>Programação em Par</h3>
+A equipe resolveu utilizar o método de programação "Pair Programming", tendo em vista as suas vantagens e realidade da nossa equipe, com alguns membros possuindo um conhecimento prévio mais avançado e profundo na área e outros que tiveram um primeiro contato com programação no 1º período. Essa abordagem de trabalho melhorou as relações profissionais e interpessoais entre os membros, promovendo um desenvolvimento um melhor entrosamento da equipe e performance. Além do mais, o compartilhamento de conhecimento e experiências se mostrou um diferencial, promovendo uma redução da dependência de um único integrante e enriquecendo as decisões com o envolvimento de duas perspectivas diferentes. Em resumo, percebemos que o Pair Programming é além de um método eficaz, uma excelente oportunidade de transmissão de conhecimento, aprendizado e desenvolvimento.
 
