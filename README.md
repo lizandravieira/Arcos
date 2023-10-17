@@ -16,8 +16,9 @@
 <p><a href=                                                                     >Link Protótipo Lo-fi no figma </a></p>
 
 <h2>📦1ª Entregas:</h2>
-<h3>Print do Quadro do Jira<h3>
-  ![image](https://github.com/lizandravieira/Arcos/assets/132586951/fc155b25-c64d-495d-9e80-7825cafe753e)
+<h3>Print do Quadro do Jira</h3>
+
+![image](https://github-production-user-asset-6210df.s3.amazonaws.com/132586951/275679355-fc155b25-c64d-495d-9e80-7825cafe753e.png)
 
 
 <h3>Screencast</h3>
