@@ -34,11 +34,27 @@
         height: auto;
         max-width: 120px;
       }
+
+      nav {
+        background-color: rgb(47, 121, 104) !important;
+      }
+      .btn-dark {
+        color: #FFF;
+        background-color: rgb(232, 60,59) !important;
+        border-color: rgb(232, 60,59) !important;
+      }
+      
+      .btn-dark:hover {
+        
+        color: #FFF !important;;
+        background-color: rgb(143, 32, 32) !important;
+        border-color: rgb(143, 32, 32) !important;
+      }
     </style>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <nav class="navbar navbar-expand-sm navbar-light ">
         <div class="container">
           <a class="navbar-brand font-brand me-5" href="{% url 'index' %}">
             <svg
