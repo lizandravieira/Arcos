@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Arcos - Entrar</title>
+    <title>Arcos - Painel ONG</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -90,14 +90,27 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  href="{% url 'index' %}"
+                  href="#"
                   aria-current="page"
                   >Página inicial
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#" aria-current="page"
-                  >Entrar <span class="visually-hidden">(atual)</span>
+                <a class="nav-link active" href="{% url 'org_panel_contact' %}" aria-current="page"
+                  >Contato<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item mt-1">
+                <p class="">Logado como: {{org_name}}
+                </p>
+              </li>
+              <li class="nav-item ms-lg-5 ">
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger rounded">
+                  Sair
                 </a>
               </li>
             </ul>
@@ -106,45 +119,10 @@
       </nav>
     </header>
     <main>
-      <div class="">
-        <div
-          class="container d-flex flex-row justify-content-center align-items-center"
-          style="height: 100vh"
-        >
-          <form
-            class="p-5 bg-light rounded shadow"
-            action="{% url 'login' %}"
-            method="POST"
-          >
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="username" class="form-label">E-mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                placeholder="ex. euri@arcos.com"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Senha</label>
-              <input
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                placeholder="Sua senha"
-              />
-            </div>
-            <button type="submit" class="btn btn-dark">Entrar</button>
-
-            <div class="text-center mt-3 -mb-1">
-              <a href="{% url 'register' %}" class="">Não tenho uma conta</a>
-            </div>
-          </form>
-          
-        </div>
+      <div class="vh-100 text-center ">
+        <a href="#" class="btn btn-dark rounded mt-5">
+          Ver seu site
+        </a>
       </div>
     </main>
     <footer>

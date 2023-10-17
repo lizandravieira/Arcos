@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Arcos</title>
+    <title>Arcos - Registro</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -120,7 +120,7 @@
           >
             {% csrf_token %}
             <div class="mb-3">
-              <label for="username" class="form-label">Nome organização</label>
+              <label for="org_name" class="form-label">Nome organização</label>
               <input
                 type="text"
                 class="form-control"
@@ -130,13 +130,23 @@
               />
             </div>
             <div class="mb-3">
+              <label for="username" class="form-label">Nome organização</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                placeholder="ejvf_org"
+              />
+            </div>
+            <div class="mb-3">
               <label for="email" class="form-label">E-mail</label>
               <input
                 type="email"
                 class="form-control"
                 id="email"
                 name="email"
-                placeholder="ex. johndoe@example.com"
+                placeholder="ex. euri@arcos.com"
               />
             </div>
             <div class="mb-3">

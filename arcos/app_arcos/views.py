@@ -27,15 +27,31 @@ def login(request):
             if user:
                 login_django(request, user)
 
-                return HttpResponse("autenticado")
+                return redirect("org_panel_index")
             else:
                 return HttpResponse("Email ou senha invalidos")
 
 
+# @login_required(login_url="/login/")
+# def plataforma(request):
+#     if request.user.is_authenticated:
+#         return HttpResponse("Plataforma")
+
 @login_required(login_url="/login/")
-def plataforma(request):
+def org_panel_index(request):
     if request.user.is_authenticated:
-        return HttpResponse("Plataforma, logado como:")
+        org_name = request.user.org_name
+        return render(request, "org_panel/index.html", {"org_name": org_name })
+    else:
+        return redirect("login")
+    
+@login_required(login_url="/login/")
+def org_panel_contact(request):
+    if request.user.is_authenticated:
+        org_name = request.user.org_name
+        return render(request, "org_panel/contact.html", {"org_name": org_name })
+    else:
+        return redirect("login")
 
 
 def register(request):
@@ -45,6 +61,7 @@ def register(request):
       if request.method == "GET":
           return render(request, "auth/register.html")
       else:
+          username = request.POST.get("username")
           org_name = request.POST.get("org_name")
           email = request.POST.get("email")
           password = request.POST.get("password")
@@ -53,11 +70,13 @@ def register(request):
 
           if user:
               return HttpResponse("Já existe um usuário cadastrado")
-          user = User.objects.create_user(
+          user = User.objects.create_user(username=username, 
               org_name=org_name, email=email, password=password)
           user.save()
 
-          return HttpResponse("usuário cadastrado com sucesso")
+          login_django(request, user)
+
+          return redirect("org_panel_index")
 
 
 def logout(request):
