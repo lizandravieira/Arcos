@@ -18,8 +18,9 @@
 <h2>📦1ª Entregas:</h2>
 <h3>Print do Quadro do Jira</h3>
 
-![Painel](https://github-production-user-asset-6210df.s3.amazonaws.com/132586951/275679355-fc155b25-c64d-495d-9e80-7825cafe753e.png)
-![Backlog](https://github.com/lizandravieira/Arcos/assets/132586951/7496eb0a-ad6b-4b6a-a368-5ec1c82a47b1)
+![Painel](https://github.com/lizandravieira/Arcos/assets/134390540/45cdd09e-6df9-43c2-9783-893b52ccac5e)
+![Backlog](https://github.com/lizandravieira/Arcos/assets/134390540/cdb474e6-1d9f-4753-a90a-270e838d8a69)
+
 
 
 
