@@ -31,10 +31,14 @@
 <h3>Diagrama de Atividades</h3>
 <p><a href ="https://drive.google.com/file/d/1PAPQffs5lLTP3oMV-2TcF-feMmw8PFOa/view?usp=sharing">Link do Diagrama </a></p>
 
+
+
 ## 3) Deployment das Histórias em produção
 ### 3.1) Link 
 [https://arcos.azurewebsites.net/](https://arcos.azurewebsites.net/)
 ### 3.2) Instruções de acesso:
+
+
 
 
 <h3>Programação em Par</h3>
