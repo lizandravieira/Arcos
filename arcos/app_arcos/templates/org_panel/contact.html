@@ -90,14 +90,20 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  href="#"
+                  href="{% url 'org_panel_index' %}"
                   aria-current="page"
                   >Página inicial
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'org_panel_contact' %}" aria-current="page"
+                <a class="nav-link active" href="#" aria-current="page"
                   >Contato<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'org_panel_actions_index' %}" aria-current="page"
+                  >Ações<span class="visually-hidden"></span>
                 </a>
               </li>
 
@@ -130,7 +136,7 @@
             </div>
             <div class="mb-3">
               <label for="telefone" class="form-label">Telefone para contato</label>
-              <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="ex. (00) 00000-0000" value="{{ telefone|default:'' }}" aria-describedby="telefoneHelp">
+              <input type="tel" name="telefone" id="telefone" class="form-control" placeholder="ex. (00) 00000-0000" value="{{ phone|default:'' }}" aria-describedby="telefoneHelp">
               <small id="telefoneHelp" class="form-text text-muted">Insira um telefone válido para contato.</small>
             </div>
             <div class="mb-3">

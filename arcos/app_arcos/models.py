@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.conf import settings
+from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator
 class UserManager(BaseUserManager):
   def _create_user(self, username, email, password, is_staff, is_superuser, **extra_fields):
       now = timezone.now()
@@ -41,4 +43,29 @@ class User(AbstractBaseUser, PermissionsMixin):
 
   class Meta:
       verbose_name = _('user')
-      verbose_name_plural = _('users')      
+      verbose_name_plural = _('users') 
+
+class Contact(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)  
+  email = models.EmailField(_('email address'), max_length=255, unique=True)
+  phone = models.CharField(_('phone number'), max_length=20, null=True, blank=True)
+  instagram = models.CharField(_('instagram username'), max_length=30, null=True, blank=True)
+  facebook = models.CharField(_('facebook username'), max_length=30, null=True, blank=True)
+
+  class Meta:
+    verbose_name = _('contact')
+    verbose_name_plural = _('contacts')
+
+class Action(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  title = models.CharField(_('title'), max_length=100)
+  image = models.ImageField(_('image'), upload_to='action_images/', null=True, blank=True)
+  attachments = models.FileField(_('attachments'), upload_to='action_attachments/', null=True, blank=True)
+  description = models.TextField(_('description'), null=True, blank=True)
+  day = models.IntegerField(_('day'), validators=[MinValueValidator(1), MaxValueValidator(31)])
+  month = models.IntegerField(_('month'), validators=[MinValueValidator(1), MaxValueValidator(12)])
+  year = models.IntegerField(_('year'), validators=[MinValueValidator(1900), MaxValueValidator(9999)])
+
+  class Meta:
+    verbose_name = _('action')
+    verbose_name_plural = _('actions')

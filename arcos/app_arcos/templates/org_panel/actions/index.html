@@ -34,6 +34,39 @@
         height: auto;
         max-width: 120px;
       }
+
+      .actions-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.action-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.action-image img {
+  width: 100%;
+  height: auto;
+}
+
+.action-details {
+  padding: 10px;
+}
+
+.action-details h2 {
+  margin-top: 0;
+}
+
+.attachments a {
+  display: block;
+  margin-bottom: 5px;
+}
     </style>
   </head>
   <body>
@@ -90,7 +123,7 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  href="#"
+                  href="{% url 'org_panel_index' %}"
                   aria-current="page"
                   >Página inicial
                 </a>
@@ -102,11 +135,10 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'org_panel_actions_index' %}" aria-current="page"
+                <a class="nav-link active" href="#" aria-current="page"
                   >Ações<span class="visually-hidden"></span>
                 </a>
               </li>
-
 
               
             </ul>
@@ -126,10 +158,30 @@
       </nav>
     </header>
     <main>
-      <div class="vh-100 text-center ">
-        <a href="{% url 'view_site' user.username %}" class="btn btn-dark rounded mt-5">
-          Ver seu site
-        </a>
+      <div class="mt-5 text-center w-100 h-100 d-flex flex-column align-items-center justify-content-center">
+
+  <a href="{% url 'org_panel_actions_create' %}" class="btn btn-outline-dark rounded mb-5">
+    Criar ação
+  </a>
+
+        <div class="actions-container align-items-center justify-content-center mb-5">
+          {% for action in actions %}
+            <div class="action-card">
+              <div class="action-image">
+                <img src="{{ action.image.url }}" alt="{{ action.title }}">
+              </div>
+              <div class="action-details">
+                <h2>{{ action.title }}</h2>
+                <p>{{ action.description }}</p>
+                <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
+                <div class="attachments">
+                  {% for attachment in action.attachments.all %}
+                    <a href="{{ attachment.file.url }}" target="_blank">{{ attachment.file.name }}</a><br>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
       </div>
     </main>
     <footer>
