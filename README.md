@@ -31,6 +31,12 @@
 <h3>Diagrama de Atividades</h3>
 <p><a href ="https://drive.google.com/file/d/1PAPQffs5lLTP3oMV-2TcF-feMmw8PFOa/view?usp=sharing">Link do Diagrama </a></p>
 
+## 3) Deployment das Histórias em produção
+### 3.1) Link 
+[https://arcos.azurewebsites.net/](https://arcos.azurewebsites.net/)
+### 3.2) Instruções de acesso:
+
+
 <h3>Programação em Par</h3>
 A equipe resolveu utilizar o método de programação "Pair Programming", tendo em vista as suas vantagens e realidade da nossa equipe, com alguns membros possuindo um conhecimento prévio mais avançado e profundo na área e outros que tiveram um primeiro contato com programação no 1º período. Essa abordagem de trabalho melhorou as relações profissionais e interpessoais entre os membros, promovendo um desenvolvimento um melhor entrosamento da equipe e performance. Além do mais, o compartilhamento de conhecimento e experiências se mostrou um diferencial, promovendo uma redução da dependência de um único integrante e enriquecendo as decisões com o envolvimento de duas perspectivas diferentes. Em resumo, percebemos que o Pair Programming é além de um método eficaz, uma excelente oportunidade de transmissão de conhecimento, aprendizado e desenvolvimento.
 
