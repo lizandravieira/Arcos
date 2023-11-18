@@ -123,6 +123,35 @@ def org_panel_actions_create(request):
         return render(request, "org_panel/actions/add.html", {"org_name": org_name })
     else:
         return redirect("org_panel_index")
+    
+@login_required(login_url="/login/")
+def org_settings_panel(request):
+   
+   if request.user.is_authenticated:
+      org_name = request.user.org_name
+
+      return render (request, "org_panel/settings.html", {"org_name" : org_name, "is_public" : request.user.is_public})
+   else:
+      return(redirect("login"))
+   
+@login_required(login_url="/login/")
+def change_visibility (request):
+   if request.method == 'POST':
+      visibility = request.POST.get('visibility')
+
+      if visibility == 'public':
+         request.user.is_public = True
+
+      elif visibility == 'private':
+         request.user.is_public = False
+
+      request.user.save()
+      messages.success(request, "Visibilidade alterada com sucesso!")
+   return redirect ('org_panel_settings')
+
+
+    
+      
 
 def register(request):
     if request.user.is_authenticated:

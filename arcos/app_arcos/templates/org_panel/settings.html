@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Ajustes do Site</h2>
+  <form method="post" action="{% url 'change_visibility' %}">
+    {% csrf_token %}
+    <label for="visibility">Visibilidade do Site:</label>
+    <select id="visibility" name="visibility">
+      <option value="public" {% if is_public %}selected{% endif %}>Público</option>
+      <option value="private" {% if not is_public %}selected{% endif %}>Privado</option>
+    </select>
+    <button type="submit">Salvar</button>
+  </form>
+{% endblock %}
