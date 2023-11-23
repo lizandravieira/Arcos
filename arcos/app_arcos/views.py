@@ -205,7 +205,20 @@ def org_panel_donations_index(request):
             }
         org_name = request.user.org_name
         return render(request, "org_panel/donations/index.html", {"org_name": org_name, "name": initial_data['name'], "description": initial_data['description'], "pix": initial_data['pix']})
+    
+@login_required(login_url="/login/")
+def org_panel_donations_list(request):
+    org_name = request.user.org_name
+    donations = Donation.objects.filter(user=request.user)
+    return render(request, "org_panel/donations/list.html", {"org_name": org_name, "donations": donations})
 
+@login_required(login_url="/login/")
+def org_panel_donations_confirm(request, id):
+    donation = Donation.objects.get(id=id, user=request.user)
+    donation.confirmed = True
+    donation.save()
+    messages.success(request, 'Doação confirmada com sucesso!')
+    return redirect('org_panel_donations_list')
 
 def register(request):
     if request.user.is_authenticated:

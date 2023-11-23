@@ -22,6 +22,8 @@ urlpatterns = [
   path("org/panel/actions/<int:id>/delete", views.org_panel_actions_delete, name="org_panel_actions_delete"),
 
   path("org/panel/donations/index", views.org_panel_donations_index, name="org_panel_donations_index"),
+  path("org/panel/donations/list", views.org_panel_donations_list, name="org_panel_donations_list"),
+  path("org/panel/donations/<int:id>/confirm", views.org_panel_donations_confirm, name="org_panel_donations_confirm"),
 
   path("change_visibility",views.change_visibility, name='change_visibility'),
 

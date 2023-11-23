@@ -89,6 +89,7 @@ class Donation(models.Model):
   date = models.DateTimeField(_('date'), default=timezone.now)
   name = models.CharField(_('name'), max_length=100)
   cpf = models.CharField(_('cpf'), max_length=11)
+  confirmed = models.BooleanField(_('confirmed'), default=False)
 
   class Meta:
     verbose_name = _('donation')

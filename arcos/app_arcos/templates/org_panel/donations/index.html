@@ -22,7 +22,8 @@
           <input type="text" name="name" id="name" class="form-control" placeholder="ex. Projeto ONG" value="{{ name|default:'' }}" aria-describedby="nameHelp">
           <small id="nameHelp" class="form-text text-muted">Insira o nome do titular da conta.</small>
         </div>
-        <button type="submit" class="btn btn-dark">Salvar</button>
+        <button type="submit" class="btn btn-dark mb-3 me-3">Salvar</button>
+        <a href="{% url 'org_panel_donations_list' %}" class="btn btn-secondary mb-3">Ver doações</a>
       </form>
     </div>
   </div>

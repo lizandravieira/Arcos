@@ -1,0 +1,25 @@
+{% extends 'org_panel/panel_base.html' %} {% block content %}
+
+
+<button type="button" class="btn btn-danger mb-3 m-5" onclick="window.history.back();">Voltar</button>
+
+{% for donation in donations %}
+<div class="card mb-3 w-auto m-5">
+    <div class="card-body">
+        <h5 class="card-title">{{ donation.name }}</h5>
+        <p class="card-text">
+            Valor: R$ {{ donation.value }}<br>
+            Data: {{ donation.date }}<br>
+            CPF: {{ donation.cpf }}<br>
+            Confirmado: {{ donation.confirmed }}
+        </p>
+        {% if not donation.confirmed %}
+        <a href="{% url 'org_panel_donations_confirm' donation.id %}" class="btn btn-success">Confirmar doação</a>
+        {% endif %}
+    </div>
+</div>
+{% empty %}
+<p>No donations found.</p>
+{% endfor %}
+
+{% endblock %}
