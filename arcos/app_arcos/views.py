@@ -156,7 +156,8 @@ def change_visibility(request):
 @login_required(login_url="/login/")
 def org_panel_settings(request):
     org_name = request.user.org_name
-    return render(request, "org_panel/settings.html", {"org_name": org_name})
+    is_public = request.user.is_public
+    return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": is_public})
 
 
 def register(request):

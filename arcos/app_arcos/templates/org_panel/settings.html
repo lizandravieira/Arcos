@@ -11,10 +11,10 @@
         <label for="visibility" class="form-label">Visibilidade do site</label>
 
         <select name="visibility" id="visibility" class="form-control">
-          <option value="public" {% if is_public %}selected{% endif %}>
+          <option value="public" {% if is_public %} selected {% endif %}>
             Público
           </option>
-          <option value="private" {% if not is_public %}selected{% endif %}>
+          <option value="private" {% if not is_public %} selected {% endif %}>
             Privado
           </option>
         </select>
