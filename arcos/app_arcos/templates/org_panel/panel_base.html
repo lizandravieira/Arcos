@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Arcos - Painel ONG</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <style type="text/css">
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      .font-brand {
+        font-weight: 700;
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+        max-width: 120px;
+      }
+      nav {
+        background-color: #194035 !important;
+        min-width: 100%;
+        min-height: 80px;
+        color: #FFFFFF;
+      }
+      nav a {
+        color: #FFFFFF !important;
+      }
+      .btn-dark {
+        color: #FFF;
+        background-color: rgb(232, 60,59) !important;
+        border-color: rgb(232, 60,59) !important;
+      }
+      
+      .btn-dark:hover {
+        
+        color: #FFF !important;;
+        background-color: rgb(143, 32, 32) !important;
+        border-color: rgb(143, 32, 32) !important;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container" style="align-items: start !important;">
+          <a class="navbar-brand font-brand me-5" href="{% url 'index' %}">
+            <svg width="176" height="34" viewBox="0 0 176 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M144.329 31.3635C144.326 30.0382 145.395 28.9593 146.721 28.9561C149.39 28.9465 152.387 28.9369 155.383 28.9241C159.318 28.9081 163.252 28.8921 166.45 28.8857H166.486C167.782 28.8985 168.983 28.4183 169.882 27.5315C170.734 26.6928 171.201 25.5819 171.201 24.4102C171.201 21.942 169.111 19.9348 166.543 19.9348H153.603C148.388 19.9348 144.143 15.773 144.143 10.6573V9.25508C144.143 8.68204 144.185 5.32704 146.916 2.69554C149.669 0.0480336 153.05 0.150478 153.619 0.176089C158.802 0.163284 163.982 0.153675 169.165 0.140869C170.497 0.140869 171.576 1.21972 171.573 2.55148V2.5867C171.566 3.90885 170.494 4.9781 169.172 4.9781H153.744C153.683 4.9781 153.626 4.97809 153.565 4.97169C153.146 4.93968 151.596 4.89807 150.309 6.08896C148.955 7.34069 148.942 8.98938 148.942 9.25189V10.6541C148.942 13.1223 151.033 15.1295 153.6 15.1295H166.54C171.755 15.1295 176 19.2913 176 24.407C176 26.8721 175.024 29.193 173.253 30.9442C171.46 32.7145 169.082 33.6877 166.543 33.6877C166.511 33.6877 166.476 33.6877 166.444 33.6877C163.252 33.6973 159.327 33.7133 155.399 33.7261C152.403 33.7389 149.403 33.7485 146.733 33.7581C145.408 33.7613 144.329 32.6889 144.326 31.3635H144.329Z" fill="white"/>
+              <path d="M94.9901 33.7389C90.8923 33.7389 86.5193 33.5725 83.1163 32.0967C76.0061 29.0138 71.9276 23.3314 71.9276 16.5029C71.9276 11.0158 75.5771 3.92807 83.5869 1.33498C87.8703 -0.0511984 92.2625 -0.0191897 96.5075 0.00962238C97.1222 0.0128237 97.74 0.0192358 98.3579 0.0192358H98.4219C99.7473 0.0192358 100.823 1.09489 100.823 2.42024C100.823 3.7456 99.7473 4.82125 98.4219 4.82125H98.3579C97.7272 4.82125 97.0997 4.81803 96.4723 4.81163C92.429 4.78602 88.6098 4.75721 85.0627 5.90329C79.5884 7.67363 76.7264 12.5749 76.7264 16.5029C76.7264 21.3978 79.6717 25.3706 85.0211 27.6916C87.9983 28.9817 92.8516 28.9529 96.754 28.9305C97.3014 28.9273 97.8361 28.9241 98.3547 28.9241H98.4379C99.7633 28.9273 100.836 30.0062 100.833 31.3315C100.829 32.6569 99.7505 33.7293 98.4251 33.7261H98.3483C97.8457 33.7261 97.3206 33.7261 96.7828 33.7325C96.1938 33.7357 95.5919 33.7389 94.9837 33.7389H94.9901Z" fill="white"/>
+              <path d="M122.483 33.6845C113.196 33.6845 105.641 26.1293 105.641 16.8423C105.641 7.55517 113.196 0 122.483 0C131.77 0 139.325 7.55517 139.325 16.8423C139.325 26.1293 131.77 33.6845 122.483 33.6845ZM122.483 4.80521C115.844 4.80521 110.443 10.2059 110.443 16.8455C110.443 23.485 115.844 28.8857 122.483 28.8857C129.123 28.8857 134.523 23.485 134.523 16.8455C134.523 10.2059 129.123 4.80521 122.483 4.80521Z" fill="white"/>
+              <path d="M30.8928 33.7357C29.734 33.7357 28.7191 32.9129 28.5302 31.7701C27.5891 26.0621 22.6206 21.6954 16.6501 21.6954C10.6796 21.6954 5.71109 26.0621 4.7699 31.7701C4.58102 32.9129 3.5662 33.7357 2.40731 33.7357C0.937897 33.7357 -0.208182 32.4231 0.0319182 30.9697C1.35407 22.9952 8.30098 16.8934 16.6469 16.8934C24.9928 16.8934 31.9397 22.9952 33.2618 30.9697C33.5019 32.4199 32.3591 33.7357 30.8864 33.7357H30.8928Z" fill="#FF4040"/>
+              <path d="M19.4768 14.7359C20.5397 14.8959 22.3388 15.0176 23.6898 15.4754C24.8679 15.8755 25.8955 16.3397 26.7695 16.7943C24.2628 11.8002 21.753 6.80615 19.2463 1.80886C18.1579 -0.361653 15.0558 -0.35525 13.9737 1.81846C11.4895 6.80935 9.00524 11.8002 6.521 16.7911C7.39176 16.3365 8.42259 15.8723 9.60068 15.4722C10.9516 15.0144 12.357 14.8767 13.4199 14.7167C14.0313 13.4041 14.5628 12.0275 15.1262 10.6766C15.6896 9.3224 17.6264 9.38003 18.113 10.763C18.5708 12.066 18.9422 13.3945 19.48 14.7327L19.4768 14.7359Z" fill="#FF4040"/>
+              <path d="M66.8247 30.7361C66.0244 27.2114 63.8058 24.0165 60.5981 21.4458C60.7197 21.3433 60.8478 21.2473 60.9662 21.1416C61.7858 20.4085 62.5093 19.557 63.1207 18.6094C63.9019 17.3961 64.4813 16.0323 64.7918 14.6653C64.8911 14.2236 65.064 13.3112 65.096 12.1427C65.1056 11.7425 65.1376 10.5292 64.8591 9.22626C64.3052 6.63958 62.8134 4.96207 62.3236 4.41144C60.0282 1.82476 57.1694 1.02123 55.9465 0.675481C53.8849 0.0960389 52.2554 0.0896307 51.0453 0.0896307H40.5033C39.29 0.083228 38.3039 1.06605 38.3007 2.27936L38.2719 15.1007H38.2623L38.3264 31.2931C38.3328 32.6185 39.4116 33.6877 40.737 33.6845C42.0623 33.6781 43.1316 32.5992 43.1284 31.2739L43.0835 19.9892C52.7772 20.6935 60.771 25.6812 62.1411 31.8181C62.3844 32.9098 63.3608 33.6781 64.4781 33.6781C66.0179 33.6781 67.1608 32.2439 66.8183 30.7425L66.8247 30.7361ZM43.0803 15.1711L43.1028 4.88845H51.0613C52.0761 4.88845 53.2222 4.89485 54.6532 5.29501C55.6712 5.58313 57.3775 6.06333 58.7381 7.59357C59.0486 7.94572 59.8778 8.87731 60.1691 10.2283C60.3292 10.971 60.3068 11.7553 60.3004 12.0114C60.2779 12.8182 60.1531 13.4264 60.1147 13.5961C59.9834 14.1723 59.6985 15.0591 59.087 16.0067C58.7157 16.5829 58.2611 17.1208 57.7681 17.5625C57.2975 17.9851 56.7757 18.3405 56.2154 18.6286C52.4571 16.711 47.9592 15.4721 43.0835 15.1711H43.0803Z" fill="white"/>
+              </svg>              
+          </a>
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  href="#"
+                  aria-current="page"
+                  >Página inicial
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'org_panel_contact' %}" aria-current="page"
+                  >Contato<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'org_panel_actions_index' %}" aria-current="page"
+                  >Ações<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+
+              
+            </ul>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item mt-1">
+                <p class="">Logado como: {{org_name}}
+                </p>
+              </li>
+              <li class="nav-item ms-lg-5 ">
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger rounded">
+                  Sair
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      {% block content %}
+            {% endblock %}
+
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
