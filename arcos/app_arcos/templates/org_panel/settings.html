@@ -1,13 +1,31 @@
 {% extends 'org_panel/panel_base.html' %} {% block content %}
 
-  <h2>Ajustes do Site</h2>
-  <form method="post" action="{% url 'change_visibility' %}">
-    {% csrf_token %}
-    <label for="visibility">Visibilidade do Site:</label>
-    <select id="visibility" name="visibility">
-      <option value="public" {% if is_public %}selected{% endif %}>Público</option>
-      <option value="private" {% if not is_public %}selected{% endif %}>Privado</option>
-    </select>
-    <button type="submit">Salvar</button>
-  </form>
+<div
+  class="mt-5 text-center w-100 h-100 d-flex align-items-center justify-content-center"
+>
+  <div class="" style="max-width: fit-content">
+    <form method="POST" action="{% url 'change_visibility' %}">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="visibility" class="form-label">Visibilidade do site</label>
+
+        <select name="visibility" id="visibility" class="form-control">
+          <option value="public" {% if is_public %}selected{% endif %}>
+            Público
+          </option>
+          <option value="private" {% if not is_public %}selected{% endif %}>
+            Privado
+          </option>
+        </select>
+        <small id="emailHelp" class="form-text text-muted"
+          >Clique para mudar a visibilidade.</small
+        >
+      </div>
+
+      <button type="submit" class="btn btn-dark">Salvar</button>
+    </form>
+  </div>
+</div>
+
 {% endblock %}

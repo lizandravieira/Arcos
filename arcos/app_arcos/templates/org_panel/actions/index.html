@@ -1,29 +1,35 @@
 {% extends 'org_panel/panel_base.html' %} {% block content %}
 
-      <div class="mt-5 text-center w-100 h-100 d-flex flex-column align-items-center justify-content-center">
-
-  <a href="{% url 'org_panel_actions_create' %}" class="btn btn-outline-dark rounded mb-5">
+<div
+  class="mt-5 text-center w-100 h-100 d-flex flex-column align-items-center justify-content-center"
+>
+  <a
+    href="{% url 'org_panel_actions_create' %}"
+    class="btn btn-outline-dark rounded mb-5"
+  >
     Criar ação
   </a>
 
-        <div class="actions-container align-items-center justify-content-center mb-5">
-          {% for action in actions %}
-            <div class="action-card">
-              <div class="action-image">
-                <img src="{{ action.image.url }}" alt="{{ action.title }}">
-              </div>
-              <div class="action-details">
-                <h2>{{ action.title }}</h2>
-                <p>{{ action.description }}</p>
-                <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
-                <div class="attachments">
-                  {% for attachment in action.attachments.all %}
-                    <a href="{{ attachment.file.url }}" target="_blank">{{ attachment.file.name }}</a><br>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
+  <div class="actions-container align-items-center justify-content-center mb-5">
+    {% for action in actions %}
+    <div class="action-card">
+      <div class="action-image">
+        <img src="{{ action.image.url }}" alt="{{ action.title }}" />
+      </div>
+      <div class="action-details">
+        <h2>{{ action.title }}</h2>
+        <p>{{ action.description }}</p>
+        <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
+        <div class="attachments">
+          {% for attachment in action.attachments.all %}
+          <a href="{{ attachment.file.url }}" target="_blank"
+            >{{ attachment.file.name }}</a
+          ><br />
           {% endfor %}
+        </div>
       </div>
-      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
