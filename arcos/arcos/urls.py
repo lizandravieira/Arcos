@@ -32,6 +32,7 @@ urlpatterns = [
   path("view/site/<str:username>/actions/<int:id>", views.view_site_action, name="view_site_action"),
   path("view/site/<str:username>/contact", views.view_site_contact, name="view_site_contact"),
   path("view/site/<str:username>/donate", views.view_site_donate, name="view_site_donate"),
+  path("view/site/<str:username>/donations", views.view_site_donations, name="view_site_donations"),
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

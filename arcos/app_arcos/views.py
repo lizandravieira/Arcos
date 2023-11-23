@@ -330,3 +330,16 @@ def view_site_donate(request, username):
         return redirect('view_site_donate', username=username)
     else: 
       return render(request, "view/donate.html", {"user": user, "donations_page": donations_page})
+    
+@is_public
+def view_site_donations(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return HttpResponse("site nao encontrado")
+    try:
+        cpf = request.GET.get('cpf')
+        donations = Donation.objects.filter(user=user, cpf=cpf)
+    except Donation.DoesNotExist:
+        return HttpResponse("Doações não encontradas")
+    return render(request, "view/donations.html", {"user": user, "donations": donations})

@@ -24,6 +24,7 @@
         name="cpf"
         placeholder="000.000.000-00"
       />
+      <span id="cpf-error" style="color: red;"></span>
     </div>
     <div class="form-group mb-3">
       <label for="value">Valor da doação</label>
@@ -38,11 +39,24 @@
       />
     </div>
     <button type="submit" class="btn btn-success mb-3">Confirmar doação</button>
-    <button type="button" class="btn btn-secondary mb-3">Ver minhas doações</button>
+    <button type="button" class="btn btn-secondary mb-3" id="view-donations">Ver minhas doações</button>
   </form>
 </div>
 
 <script>
+ document.querySelector('#view-donations').addEventListener('click', function(e) {
+    var cpf = document.getElementById('cpf').value;
+    var cpfError = document.getElementById('cpf-error');
+
+    if (cpf == "") {
+        e.preventDefault();
+        cpfError.textContent = 'Por favor, digite o CPF antes de ver as suas doações.';
+    } else {
+        cpfError.textContent = '';
+        window.location.href = "{% url 'view_site_donations' user.username %}?cpf=" + cpf;
+    }
+});
+
  document.getElementById('value').addEventListener('input', function(e) {
     var amount = e.target.value;
     var qrCode = document.getElementById('qrCode');
