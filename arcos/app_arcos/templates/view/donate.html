@@ -1,0 +1,60 @@
+{% extends 'view/view_base.html' %} {% block content %}
+<div class="container">
+  <h1>{{ donations_page.name }}</h1>
+  <p>{{ donations_page.description }}</p>
+
+  <form id="donationForm" method="POST">
+    {% csrf_token %}
+    <div class="form-group mb-3">
+      <label for="name">Seu nome</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="ex. Eurivaldo"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="cpf">CPF</label>
+      <input
+        type="text"
+        class="form-control"
+        id="cpf"
+        name="cpf"
+        placeholder="000.000.000-00"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="value">Valor da doação</label>
+      <input type="number" step="0.01" class="form-control" id="value" name="value" placeholder="Digite o valor da doação">
+  </div>
+    <div class="d-flex justify-content-center">
+      <img
+        id="qrCode"
+        src=""
+        alt="QR Code"
+        style="display: none; margin-top: 10px; margin-bottom: 20px"
+      />
+    </div>
+    <button type="submit" class="btn btn-success mb-3">Confirmar doação</button>
+  </form>
+</div>
+
+<script>
+ document.getElementById('value').addEventListener('input', function(e) {
+    var amount = e.target.value;
+    var qrCode = document.getElementById('qrCode');
+
+    if (amount <= 0 || isNaN(amount)) {
+        qrCode.style.display = 'none';
+    } else {
+        var name = "{{ donations_page.name }}";
+        var pix = "{{ donations_page.pix }}";
+        var url = "https://gerarqrcodepix.com.br/api/v1?nome=" + encodeURIComponent(name) + "&cidade=Recifeo&saida=qr&chave=" + encodeURIComponent(pix) + "&valor=" + encodeURIComponent(amount);
+        qrCode.src = url;
+        qrCode.style.display = 'block';
+    }
+});
+</script>
+{% endblock %}

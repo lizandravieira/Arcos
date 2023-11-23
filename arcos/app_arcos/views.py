@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Action, Contact, DonationsPage, User
+from .models import Action, Contact, Donation, DonationsPage, User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
@@ -306,5 +306,14 @@ def view_site_donate(request, username):
         donations_page = DonationsPage.objects.get(user=user)
     except DonationsPage.DoesNotExist:
         return HttpResponse("Página de doações não cadastrada")
-
-    return render(request, "view/donate.html", {"user": user, "donations_page": donations_page})
+    if request.method == 'POST':
+        print(request.POST)
+        value = request.POST.get('value')
+        name = request.POST.get('name')
+        cpf = request.POST.get('cpf')
+        donation = Donation(user=user, value=value, name=name, cpf=cpf)
+        donation.save()
+        messages.success(request, 'Doação realizada com sucesso!')
+        return redirect('view_site_donate', username=username)
+    else: 
+      return render(request, "view/donate.html", {"user": user, "donations_page": donations_page})

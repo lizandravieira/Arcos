@@ -82,3 +82,14 @@ class DonationsPage(models.Model):
   class Meta:
     verbose_name = _('donations page')
     verbose_name_plural = _('donations pages')
+
+class Donation(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  value = models.FloatField(_('value'), validators=[MinValueValidator(0.01)])
+  date = models.DateTimeField(_('date'), default=timezone.now)
+  name = models.CharField(_('name'), max_length=100)
+  cpf = models.CharField(_('cpf'), max_length=11)
+
+  class Meta:
+    verbose_name = _('donation')
+    verbose_name_plural = _('donations')
