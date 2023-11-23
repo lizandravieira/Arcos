@@ -71,3 +71,14 @@ class Action(models.Model):
   class Meta:
     verbose_name = _('action')
     verbose_name_plural = _('actions')
+
+
+class DonationsPage(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  name = models.CharField(_('name'), max_length=100)
+  description = models.TextField(_('description'), null=True, blank=True)
+  pix = models.CharField(_('pix'), max_length=100, null=True, blank=True)
+
+  class Meta:
+    verbose_name = _('donations page')
+    verbose_name_plural = _('donations pages')

@@ -1,0 +1,33 @@
+{% extends 'org_panel/panel_base.html' %} {% block content %}
+
+<div class="">
+  <h1 class="text-center" style="font-weight: bold; margin-top: 20px; margin-bottom: 20px;">Doações</h1>
+
+  <div class=" text-center w-100 h-100 d-flex align-items-center justify-content-center">
+    <div class="" style="max-width:fit-content;">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="description" class="form-label">Descrição da página de doações</label>
+          <textarea name="description" id="description" class="form-control" placeholder="ex. Doe para ajudar o projeto" aria-describedby="descriptionHelp">{{ description|default:'' }}</textarea>
+          <small id="descriptionHelp" class="form-text text-muted">Insira a descrição da página de doações.</small>
+        </div>
+        <div class="mb-3">
+          <label for="pix" class="form-label">Chave pix</label>
+          <input type="text" name="pix" id="pix" class="form-control" placeholder="ex. 2aa96c40-d85f-4b58-b99f-d152a1c45f74" value="{{ pix|default:'' }}" aria-describedby="pixHelp">
+          <small id="pixHelp" class="form-text text-muted">Insira a chave pix da instituição.</small>
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label">Nome do titular</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="ex. Projeto ONG" value="{{ name|default:'' }}" aria-describedby="nameHelp">
+          <small id="nameHelp" class="form-text text-muted">Insira o nome do titular da conta.</small>
+        </div>
+        <button type="submit" class="btn btn-dark">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -87,7 +87,7 @@
               <li class="nav-item">
                 <a
                   class="nav-link active"
-                  href="#"
+                  href="{% url 'org_panel_index' %}"
                   aria-current="page"
                   >Página inicial
                 </a>
@@ -107,6 +107,12 @@
               <li class="nav-item">
                 <a class="nav-link active" href="{% url 'org_panel_settings' %}" aria-current="page"
                   >Ajustes<span class="visually-hidden"></span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'org_panel_donations_index' %}" aria-current="page"
+                  >Doações<span class="visually-hidden"></span>
                 </a>
               </li>
 

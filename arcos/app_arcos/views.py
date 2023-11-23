@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Action, Contact, User
+from .models import Action, Contact, DonationsPage, User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
@@ -169,6 +169,44 @@ def org_panel_settings(request):
     return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": is_public})
 
 
+@login_required(login_url="/login/")
+def org_panel_donations_index(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        pix = request.POST.get('pix')
+        user = request.user
+        try:
+            donations_page = DonationsPage.objects.get(user=user)
+            donations_page.name = name
+            donations_page.description = description
+            donations_page.pix = pix
+            donations_page.save()
+            messages.success(request, 'Página de doações atualizada com sucesso!')
+        except DonationsPage.DoesNotExist:
+            donations_page = DonationsPage(
+                user=user, name=name, description=description, pix=pix)
+            donations_page.save()
+            messages.success(request, 'Página de doações criada com sucesso!')
+        return redirect('org_panel_donations_index')
+    else:
+        try:
+            donations_page = DonationsPage.objects.get(user=request.user)
+            initial_data = {
+                'name': donations_page.name,
+                'description': donations_page.description,
+                'pix': donations_page.pix
+            }
+        except DonationsPage.DoesNotExist:
+            initial_data = {
+                'name': '',
+                'description': '',
+                'pix': ''
+            }
+        org_name = request.user.org_name
+        return render(request, "org_panel/donations/index.html", {"org_name": org_name, "name": initial_data['name'], "description": initial_data['description'], "pix": initial_data['pix']})
+
+
 def register(request):
     if request.user.is_authenticated:
         return redirect("org_panel_index")
@@ -257,3 +295,16 @@ def view_site_contact(request, username):
         return HttpResponse("Contatos não cadastrados")
 
     return render(request, "view/contact.html", {"user": user, "contact": contact})
+
+@is_public
+def view_site_donate(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return HttpResponse("site nao encontrado")
+    try:
+        donations_page = DonationsPage.objects.get(user=user)
+    except DonationsPage.DoesNotExist:
+        return HttpResponse("Página de doações não cadastrada")
+
+    return render(request, "view/donate.html", {"user": user, "donations_page": donations_page})
