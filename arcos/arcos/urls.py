@@ -19,6 +19,7 @@ urlpatterns = [
 
   path("org/panel/actions", views.org_panel_actions_index, name="org_panel_actions_index"),
   path("org/panel/actions/create", views.org_panel_actions_create, name="org_panel_actions_create"),
+  path("org/panel/actions/<int:id>/delete", views.org_panel_actions_delete, name="org_panel_actions_delete"),
 
   path("change_visibility",views.change_visibility, name='change_visibility'),
 

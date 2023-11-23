@@ -1,5 +1,32 @@
 {% extends 'org_panel/panel_base.html' %} {% block content %}
+<style>
+  .action-card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
 
+  .action-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .action-details {
+    padding: 10px;
+  }
+
+  .action-details h2 {
+    margin-top: 0;
+  }
+
+  .attachments a {
+    display: block;
+    margin-bottom: 5px;
+  }
+</style>
 <div
   class="mt-5 text-center w-100 h-100 d-flex flex-column align-items-center justify-content-center"
 >
@@ -20,6 +47,7 @@
         <h2>{{ action.title }}</h2>
         <p>{{ action.description }}</p>
         <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
+        <a href="{% url 'org_panel_actions_delete' action.id %}" class="btn btn-dark">Exluir ação</a>
         <div class="attachments">
           {% for attachment in action.attachments.all %}
           <a href="{{ attachment.file.url }}" target="_blank"

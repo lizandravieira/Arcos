@@ -128,6 +128,14 @@ def org_panel_actions_create(request):
 
 
 @login_required(login_url="/login/")
+def org_panel_actions_delete(request, id):
+    action = Action.objects.get(id=id, user=request.user)
+    action.delete()
+    messages.success(request, 'Ação deletada com sucesso!')
+    return redirect('org_panel_actions_index')
+
+
+@login_required(login_url="/login/")
 def org_panel_settings(request):
 
     if request.user.is_authenticated:
@@ -152,6 +160,7 @@ def change_visibility(request):
         request.user.save()
         messages.success(request, "Visibilidade alterada com sucesso!")
     return redirect('org_panel_settings')
+
 
 @login_required(login_url="/login/")
 def org_panel_settings(request):
@@ -189,13 +198,15 @@ def logout(request):
     logout_django(request)
     return redirect("index")
 
+
 def is_public(function):
     def wrap(request, *args, **kwargs):
         if request.user.is_public:
             return function(request, *args, **kwargs)
         else:
-             return HttpResponse("O Site não é público.")
+            return HttpResponse("O Site não é público.")
     return wrap
+
 
 @is_public
 def view_site(request, username):
@@ -205,6 +216,7 @@ def view_site(request, username):
         return HttpResponse("site nao encontrado")
 
     return render(request, "view/index.html", {"user": user})
+
 
 @is_public
 def view_site_actions(request, username):
@@ -219,6 +231,7 @@ def view_site_actions(request, username):
         actions = []
     return render(request, "view/actions.html", {"user": user, "actions": actions})
 
+
 @is_public
 def view_site_action(request, username, id):
     try:
@@ -230,6 +243,7 @@ def view_site_action(request, username, id):
     except Action.DoesNotExist:
         return HttpResponse("acao nao encontrada")
     return render(request, "view/action.html", {"user": user, "action": action})
+
 
 @is_public
 def view_site_contact(request, username):
