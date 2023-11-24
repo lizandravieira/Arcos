@@ -300,7 +300,7 @@ def view_site_action(request, username, id):
         if request.method == 'POST':
           name = request.POST.get('name')
           comment_text = request.POST.get('comment')
-          comment = ActionComment(name=name, comment_text=comment_text, action=action, user=user)
+          comment = ActionComment(name=name, text=comment_text, action=action, user=user)
           comment.save()
           messages.success(request, 'Comentário adicionado com sucesso!')
           return redirect('view_site_action')
