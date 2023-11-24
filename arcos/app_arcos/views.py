@@ -303,8 +303,7 @@ def view_site_action(request, username, id):
           comment = ActionComment(name=name, text=comment_text, action=action, user=user)
           comment.save()
           messages.success(request, 'Comentário adicionado com sucesso!')
-          return redirect('view_site_action')
-        
+          return redirect('view_site_action', username=username, id=id)
     except Action.DoesNotExist:
         return HttpResponse("acao nao encontrada")
     return render(request, "view/action.html", {"user": user, "action": action, "comments": comments})
