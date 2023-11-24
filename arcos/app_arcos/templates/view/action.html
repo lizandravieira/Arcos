@@ -1,35 +1,109 @@
 {% extends 'view/view_base.html' %} {% block content %}
 <style>
   .action-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 20px;
-      }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
 
-      .action-image img {
-        width: 300px;
-        height: auto;
-      }
+  .action-image img {
+    width: 300px;
+    height: auto;
+  }
 
-      .action-details {
-        flex: 1;
-      }
+  .action-details {
+    flex: 1;
+  }
+
+  .comments-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comments-section h3 {
+    margin-bottom: 10px;
+  }
+
+  .comments-section .form-group {
+    margin-bottom: 10px;
+  }
+
+  .comments-section label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .comments-section input,
+  .comments-section textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .comments-section button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .comment {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  max-width: 70vw;
+  min-width: 70vw;
+  align-self: center;
+}
+
+.comment h4 {
+  margin: 10px 0 10px 0;
+}
 </style>
-      <div class="action-container d-flex flex-column mt-5 text-center">
-        <div class="action-image" style="flex-basis: 100%;">
-          <img src="{{ action.image.url }}" alt="{{ action.title }}" />
-        </div>
-        <div class="action-details" style="flex-grow: 1;">
-          <h2>{{ action.title }}</h2>
-          <p>{{ action.description }}</p>
-          <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
-          <div class="attachments">
-            <a href="{{ action.attachments.url }}" target="_blank"
-              >Anexo</a
-            ><br />
-          </div>
-        </div>
-      </div>
+<div class="action-container d-flex flex-column mt-5 text-center">
+  <div class="action-image" style="flex-basis: 100%">
+    <img src="{{ action.image.url }}" alt="{{ action.title }}" />
+  </div>
+  <div class="action-details" style="flex-grow: 1">
+    <h2>{{ action.title }}</h2>
+    <p>{{ action.description }}</p>
+    <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
+    <div class="attachments">
+      <a href="{{ action.attachments.url }}" target="_blank">Anexo</a><br />
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="comments-section">
+  <h3 class="w-75 align-self-center">Comentários</h3>
+  <form id="comment-form" class="w-75 align-self-center" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="comment">Comentário:</label>
+      <textarea id="comment" name="comment" required></textarea>
+    </div>
+    <button type="submit">Adicionar Comentário</button>
+  </form>
+
+  {% for comment in comments %}
+  <div class="comment">
+    <h4>{{ comment.name }}</h4>
+    <p>{{ comment.comment }}</p>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}

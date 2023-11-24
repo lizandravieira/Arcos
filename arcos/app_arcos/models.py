@@ -94,3 +94,14 @@ class Donation(models.Model):
   class Meta:
     verbose_name = _('donation')
     verbose_name_plural = _('donations')
+
+class ActionComment(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  action = models.ForeignKey(Action, on_delete=models.CASCADE)
+  name = models.CharField(_('name'), max_length=100)
+  text = models.TextField(_('text'), null=True, blank=True)
+  date = models.DateTimeField(_('date'), default=timezone.now)
+
+  class Meta:
+    verbose_name = _('action comment')
+    verbose_name_plural = _('action comments')
