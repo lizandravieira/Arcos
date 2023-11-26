@@ -145,14 +145,16 @@ def org_panel_update_settings(request):
         siteColor = request.POST.get('siteColor')
         siteLogo = request.FILES.get('logo')
 
-        existsLogo = SiteLogo.objects.filter(user=request.user).first()
+        if (siteLogo):
+          existsLogo = SiteLogo.objects.filter(user=request.user).first()
 
-        if existsLogo:
-            existsLogo.logo = siteLogo
-            existsLogo.save()
-        else:
-            site_logo = SiteLogo(user=request.user, logo=siteLogo)
-            site_logo.save()
+          if existsLogo:
+              existsLogo.delete()
+              site_logo = SiteLogo(user=request.user, logo=siteLogo)
+              site_logo.save()
+          else:
+              site_logo = SiteLogo(user=request.user, logo=siteLogo)
+              site_logo.save()
             
         site_color, created = SiteColor.objects.get_or_create(user=request.user, defaults={'color': siteColor})
 
