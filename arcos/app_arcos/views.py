@@ -118,10 +118,13 @@ def org_panel_actions_create(request):
             image = request.FILES.get('image')
             attachments = request.FILES.get('attachments')
             user = request.user
-            action = Action(user=user, title=title, description=description, day=day,
-                            month=month, year=year, image=image, attachments=attachments)
-            action.save()
-            messages.success(request, 'Ação criada com sucesso!')
+            if (not image or not attachments or not title or not description or not day or not month or not year):
+              return HttpResponse("Preencha todos os campos")
+            else:
+              action = Action(user=user, title=title, description=description, day=day,
+                              month=month, year=year, image=image, attachments=attachments)
+              action.save()
+              messages.success(request, 'Ação criada com sucesso!')
         org_name = request.user.org_name
         return render(request, "org_panel/actions/add.html", {"org_name": org_name})
     else:
