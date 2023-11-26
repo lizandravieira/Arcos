@@ -121,3 +121,16 @@ class SiteLogo(models.Model):
   class Meta:
     verbose_name = _('site logo')
     verbose_name_plural = _('site logos')
+
+class SiteFont(models.Model):
+    FONT_CHOICES = [
+        (1, 'Inter'),
+        (2, 'Arial'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    font = models.IntegerField(choices=FONT_CHOICES)
+
+    class Meta:
+        verbose_name = _('site font')
+        verbose_name_plural = _('site fonts')

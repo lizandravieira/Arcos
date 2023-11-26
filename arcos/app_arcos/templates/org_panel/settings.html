@@ -36,6 +36,14 @@
       <input type="file" class="form-control" id="logo" name="logo">
   </div>
 
+  <div class="mb-3">
+    <label for="font" class="form-label">Tipografia do site</label>
+    <select class="form-control" id="font" name="font">
+        <option value="1" {% if site_font.font == 1 %}selected{% endif %}>Inter</option>
+        <option value="2" {% if site_font.font == 2 %}selected{% endif %}>Arial</option>
+    </select>
+  </div>
+
       <button type="submit" class="btn btn-dark">Salvar</button>
     </form>
   </div>
