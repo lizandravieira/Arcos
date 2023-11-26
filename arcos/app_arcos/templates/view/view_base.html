@@ -38,7 +38,10 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <nav
+        class="navbar navbar-expand-sm navbar-light"
+        style="background-color: {% if site_color %}{{ site_color.color }}{% else %}#f8f9{% endif %};"
+      >
         <div class="container">
           <a class="navbar-brand font-brand me-5" href="#">
             <h1 class="">{{user.org_name}}</h1>
@@ -57,7 +60,10 @@
           <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'view_site' user.username %}" aria-current="page"
+                <a
+                  class="nav-link active"
+                  href="{% url 'view_site' user.username %}"
+                  aria-current="page"
                   >Página inicial
                   <span class="visually-hidden">(atual)</span></a
                 >
@@ -83,11 +89,7 @@
         </div>
       </nav>
     </header>
-    <main>
-      {% block content %}
-            {% endblock %}
-
-    </main>
+    <main>{% block content %} {% endblock %}</main>
     <footer>
       <!-- place footer here -->
     </footer>

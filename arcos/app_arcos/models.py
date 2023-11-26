@@ -105,3 +105,11 @@ class ActionComment(models.Model):
   class Meta:
     verbose_name = _('action comment')
     verbose_name_plural = _('action comments')
+
+class SiteColor(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  color = models.CharField(_('color'), max_length=7)
+
+  class Meta:
+    verbose_name = _('site color')
+    verbose_name_plural = _('site colors')

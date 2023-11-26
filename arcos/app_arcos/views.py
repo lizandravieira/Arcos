@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Action, ActionComment, Contact, Donation, DonationsPage, User
+from .models import Action, ActionComment, Contact, Donation, DonationsPage, SiteColor, User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
@@ -8,6 +8,7 @@ from django.contrib.auth import logout as logout_django
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
+from django.template.response import TemplateResponse
 
 
 def index(request):
@@ -147,9 +148,16 @@ def org_panel_settings(request):
 
 
 @login_required(login_url="/login/")
-def change_visibility(request):
+def org_panel_update_settings(request):
     if request.method == 'POST':
         visibility = request.POST.get('visibility')
+        siteColor = request.POST.get('siteColor')
+
+        site_color, created = SiteColor.objects.get_or_create(user=request.user, defaults={'color': siteColor})
+
+        if not created:
+            site_color.color = siteColor
+            site_color.save() 
 
         if visibility == 'public':
             request.user.is_public = True
@@ -158,7 +166,7 @@ def change_visibility(request):
             request.user.is_public = False
 
         request.user.save()
-        messages.success(request, "Visibilidade alterada com sucesso!")
+        messages.success(request, "Ajustes alterados com sucesso!")
     return redirect('org_panel_settings')
 
 
@@ -166,7 +174,8 @@ def change_visibility(request):
 def org_panel_settings(request):
     org_name = request.user.org_name
     is_public = request.user.is_public
-    return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": is_public})
+    siteColor = SiteColor.objects.filter(user=request.user).first()
+    return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": is_public, "site_color": siteColor.color})
 
 
 @login_required(login_url="/login/")
@@ -254,14 +263,26 @@ def logout(request):
     return redirect("index")
 
 
-def is_public(function):
+
+def is_public(view_func):
     def wrap(request, *args, **kwargs):
-        if request.user.is_public:
-            return function(request, *args, **kwargs)
+        username = kwargs.get('username')
+        try:
+            user = User.objects.get(username=username)
+            site_color = SiteColor.objects.filter(user=user).first()
+        except User.DoesNotExist:
+            return HttpResponse("site nao encontrado")
+
+        if user.is_public:
+            response = view_func(request, *args, **kwargs)
+            print("teste")
+            if isinstance(response, TemplateResponse):
+                response.context_data['site_color'] = site_color
+                print(response)
+            return response
         else:
             return HttpResponse("O Site não é público.")
     return wrap
-
 
 @is_public
 def view_site(request, username):
@@ -270,7 +291,7 @@ def view_site(request, username):
     except User.DoesNotExist:
         return HttpResponse("site nao encontrado")
 
-    return render(request, "view/index.html", {"user": user})
+    return TemplateResponse(request, "view/index.html", {"user": user})
 
 
 @is_public
@@ -284,7 +305,7 @@ def view_site_actions(request, username):
     except Action.DoesNotExist:
 
         actions = []
-    return render(request, "view/actions.html", {"user": user, "actions": actions})
+    return TemplateResponse(request, "view/actions.html", {"user": user, "actions": actions})
 
 
 @is_public
@@ -306,7 +327,7 @@ def view_site_action(request, username, id):
           return redirect('view_site_action', username=username, id=id)
     except Action.DoesNotExist:
         return HttpResponse("acao nao encontrada")
-    return render(request, "view/action.html", {"user": user, "action": action, "comments": comments})
+    return TemplateResponse(request, "view/action.html", {"user": user, "action": action, "comments": comments})
 
 
 @is_public
@@ -320,7 +341,7 @@ def view_site_contact(request, username):
     except Contact.DoesNotExist:
         return HttpResponse("Contatos não cadastrados")
 
-    return render(request, "view/contact.html", {"user": user, "contact": contact})
+    return TemplateResponse(request, "view/contact.html", {"user": user, "contact": contact})
 
 
 @is_public
@@ -343,7 +364,7 @@ def view_site_donate(request, username):
         messages.success(request, 'Doação realizada com sucesso!')
         return redirect('view_site_donate', username=username)
     else:
-        return render(request, "view/donate.html", {"user": user, "donations_page": donations_page})
+        return TemplateResponse(request, "view/donate.html", {"user": user, "donations_page": donations_page})
 
 
 @is_public
@@ -357,4 +378,4 @@ def view_site_donations(request, username):
         donations = Donation.objects.filter(user=user, cpf=cpf)
     except Donation.DoesNotExist:
         return HttpResponse("Doações não encontradas")
-    return render(request, "view/donations.html", {"user": user, "donations": donations})
+    return TemplateResponse(request, "view/donations.html", {"user": user, "donations": donations})
