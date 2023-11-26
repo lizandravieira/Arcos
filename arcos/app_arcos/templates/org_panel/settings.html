@@ -4,7 +4,7 @@
   class="mt-5 text-center w-100 h-100 d-flex align-items-center justify-content-center"
 >
   <div class="" style="max-width: fit-content">
-    <form method="POST" action="{% url 'org_panel_update_settings' %}">
+    <form method="POST" action="{% url 'org_panel_update_settings' %}"  enctype="multipart/form-data">
       {% csrf_token %}
 
       <div class="mb-3">
@@ -27,6 +27,14 @@
         <label for="siteColor" class="form-label text-center">Cor principal do site</label>
         <input type="color" class="form-control form-control-color w-100" id="siteColor" name="siteColor" value="{% if site_color %}{{site_color}}{% else %}#FFFFFF{% endif %}" title="Choose your color">
     </div>
+
+    <div class="mb-3">
+      <label for="logo" class="form-label">Logotipo do site</label>
+      {% if site_logo %}
+        <img src="{{ site_logo.logo.url }}" alt="Logotipo do site" style="max-width: 10vw;">
+      {% endif %}
+      <input type="file" class="form-control" id="logo" name="logo">
+  </div>
 
       <button type="submit" class="btn btn-dark">Salvar</button>
     </form>

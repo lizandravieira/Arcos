@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Action, ActionComment, Contact, Donation, DonationsPage, SiteColor, User
+from .models import Action, ActionComment, Contact, Donation, DonationsPage, SiteColor, SiteLogo, User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_django
 from django.contrib.auth.decorators import login_required
@@ -136,15 +136,6 @@ def org_panel_actions_delete(request, id):
     return redirect('org_panel_actions_index')
 
 
-@login_required(login_url="/login/")
-def org_panel_settings(request):
-
-    if request.user.is_authenticated:
-        org_name = request.user.org_name
-
-        return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": request.user.is_public})
-    else:
-        return (redirect("login"))
 
 
 @login_required(login_url="/login/")
@@ -152,7 +143,17 @@ def org_panel_update_settings(request):
     if request.method == 'POST':
         visibility = request.POST.get('visibility')
         siteColor = request.POST.get('siteColor')
+        siteLogo = request.FILES.get('logo')
 
+        existsLogo = SiteLogo.objects.filter(user=request.user).first()
+
+        if existsLogo:
+            existsLogo.logo = siteLogo
+            existsLogo.save()
+        else:
+            site_logo = SiteLogo(user=request.user, logo=siteLogo)
+            site_logo.save()
+            
         site_color, created = SiteColor.objects.get_or_create(user=request.user, defaults={'color': siteColor})
 
         if not created:
@@ -175,7 +176,8 @@ def org_panel_settings(request):
     org_name = request.user.org_name
     is_public = request.user.is_public
     siteColor = SiteColor.objects.filter(user=request.user).first()
-    return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": is_public, "site_color": siteColor.color})
+    siteLogo = SiteLogo.objects.filter(user=request.user).first()
+    return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": is_public, "site_color": siteColor.color, "site_logo": siteLogo})
 
 
 @login_required(login_url="/login/")
@@ -270,15 +272,15 @@ def is_public(view_func):
         try:
             user = User.objects.get(username=username)
             site_color = SiteColor.objects.filter(user=user).first()
+            site_logo = SiteLogo.objects.filter(user=user).first()
         except User.DoesNotExist:
             return HttpResponse("site nao encontrado")
 
         if user.is_public:
             response = view_func(request, *args, **kwargs)
-            print("teste")
             if isinstance(response, TemplateResponse):
                 response.context_data['site_color'] = site_color
-                print(response)
+                response.context_data['site_logo'] = site_logo
             return response
         else:
             return HttpResponse("O Site não é público.")

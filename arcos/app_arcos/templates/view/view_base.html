@@ -44,8 +44,12 @@
       >
         <div class="container">
           <a class="navbar-brand font-brand me-5" href="#">
-            <h1 class="">{{user.org_name}}</h1>
-          </a>
+            {% if site_logo %}
+                <img src="{{ site_logo.logo.url }}" alt="Site Logo" style="max-width: 120px; max-height: 120px;">
+            {% else %}
+                <h1 class="">{{user.org_name}}</h1>
+            {% endif %}
+        </a>
           <button
             class="navbar-toggler d-lg-none"
             type="button"
