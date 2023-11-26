@@ -113,3 +113,11 @@ class SiteColor(models.Model):
   class Meta:
     verbose_name = _('site color')
     verbose_name_plural = _('site colors')
+
+class SiteLogo(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  logo = models.ImageField(_('logo'), upload_to='site_logos/', null=True, blank=True)
+
+  class Meta:
+    verbose_name = _('site logo')
+    verbose_name_plural = _('site logos')
