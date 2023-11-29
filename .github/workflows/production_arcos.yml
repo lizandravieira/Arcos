@@ -28,9 +28,31 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r arcos/requirements.txt
-        
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+        run: |
+          set -ex
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install ./google-chrome-stable_current_amd64.deb
+          python -m pip install --upgrade pip
+          pip install -r arcos/requirements.txt
+      - uses: nanasess/setup-chromedriver@v2
+      - run: |
+          chromedriver --url-base=/wd/hub &
+      - name: Run local Server
+        run: |
+          cd arcos/
+          python manage.py makemigrations
+          sleep 5
+          python manage.py migrate
+          sleep 5
+          python manage.py runserver &
+          sleep 5
+          python manage.py test
+
+      - name: Cleaning testing files
+        run: |
+          cd arcos/
+          rm .env
+          cd ..
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
