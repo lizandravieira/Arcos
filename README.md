@@ -58,6 +58,8 @@ A equipe resolveu utilizar o método de programação "Pair Programming", tendo 
 ## 📦Status Report 2
 ### 1) Print do quadro do Jira
 ![backlog](https://github.com/lizandravieira/Arcos/assets/132586951/fba1ff47-c137-4f45-b385-83acb7785142)
+![painel](https://github.com/lizandravieira/Arcos/assets/132586951/09406f71-d671-4631-bf58-a75d732f203e)
+
 
 
 ### 2) Screencasts
