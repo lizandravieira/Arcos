@@ -30,7 +30,7 @@
 
 <h3>Diagrama de Atividades</h3>
 <p><a href ="https://drive.google.com/file/d/1PAPQffs5lLTP3oMV-2TcF-feMmw8PFOa/view?usp=sharing">Link do Diagrama </a></p>
-
+<img src = "https://github.com/lizandravieira/Arcos/assets/132512711/378a5494-4928-49e2-81aa-5cd29be32116" >
 
 
 ## 3) Deployment das Histórias em produção
@@ -42,8 +42,6 @@ b) Acesse o diretório  utilizando o comando "cd arcos"<br>
 c) Instale as dependências utilizando o comando no terminal pip install -r requirements.txt<br>
 d) Utilize o comando python manage.py makemigrations e em seguida o comando python manage.py migrate<br>
 e) Para acessar o site em si, pode-se fazer de duas maneiras: localmente, caso queira utilize o comando python manage.py runserver, ou pelo link público disponibilizado acima (hospedado na azure).
-
-
 
 
 
@@ -67,6 +65,12 @@ A equipe resolveu utilizar o método de programação "Pair Programming", tendo 
 <p><a href ="">Screencast Site</a></p>
 <p><a href ="">Screencast Teste E2E</a></p>
 <p><a href ="">Screencast CI / CD </a></p>
+
+<h3>Diagrama de Atividades</h3>
+<p><a href ="https://drive.google.com/file/d/1Y0NTbXJ_ehcTcfCjSNyLlRAsnWORLtvT/view?usp=sharing">Link do Diagrama ONG</a></p>
+<p><a href ="https://drive.google.com/file/d/1alh_91kdHvE6MnRo0jhGq8AM53I6uviZ/view?usp=sharing">Link do Diagrama DOADORES</a></p>
+<img src = "https://github.com/lizandravieira/Arcos/assets/132512711/360a31b8-8952-4fe0-9292-2e627c981330" >
+<img src = "https://github.com/lizandravieira/Arcos/assets/132512711/0048bab8-7c5a-4498-82f9-e83177b5393f" >
 
 
 ## 3) Deployment das Histórias em produção
