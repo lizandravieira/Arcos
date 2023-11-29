@@ -194,7 +194,7 @@ def org_panel_settings(request):
     siteColor = SiteColor.objects.filter(user=request.user).first()
     siteLogo = SiteLogo.objects.filter(user=request.user).first()
     siteFont = SiteFont.objects.filter(user=request.user).first() 
-    return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": is_public, "site_color": siteColor.color, "site_logo": siteLogo, "site_font": siteFont}) 
+    return render(request, "org_panel/settings.html", {"org_name": org_name, "is_public": is_public, "site_color": siteColor, "site_logo": siteLogo, "site_font": siteFont}) 
 
 @login_required(login_url="/login/")
 def org_panel_donations_index(request):

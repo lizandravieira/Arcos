@@ -25,7 +25,7 @@
 
       <div class="mb-3">
         <label for="siteColor" class="form-label text-center">Cor principal do site</label>
-        <input type="color" class="form-control form-control-color w-100" id="siteColor" name="siteColor" value="{% if site_color %}{{site_color}}{% else %}#FFFFFF{% endif %}" title="Choose your color">
+        <input type="color" class="form-control form-control-color w-100" id="siteColor" name="siteColor" value="{% if site_color %}{{site_color.color}}{% else %}#FFFFFF{% endif %}" title="Choose your color">
     </div>
 
     <div class="mb-3">
