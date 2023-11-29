@@ -1,219 +1,63 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <title>Arcos - Painel ONG</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
-    <style type="text/css">
-      body {
-        font-family: "Inter", sans-serif;
-      }
+{% extends 'org_panel/panel_base.html' %} {% block content %}
+<style>
+  .action-card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
 
-      .font-brand {
-        font-weight: 700;
-      }
+  .action-image img {
+    width: 100%;
+    height: auto;
+  }
 
-      svg {
-        width: 100%;
-        height: auto;
-        max-width: 120px;
-      }
+  .action-details {
+    padding: 10px;
+  }
 
-      .actions-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
+  .action-details h2 {
+    margin-top: 0;
+  }
 
-.action-card {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.action-image img {
-  width: 100%;
-  height: auto;
-}
-
-.action-details {
-  padding: 10px;
-}
-
-.action-details h2 {
-  margin-top: 0;
-}
-
-.attachments a {
-  display: block;
-  margin-bottom: 5px;
-}
-
-nav {
-        background-color: rgb(47, 121, 104) !important;
-      }
-      .btn-dark {
-        color: #FFF;
-        background-color: rgb(232, 60,59) !important;
-        border-color: rgb(232, 60,59) !important;
-      }
-      
-      .btn-dark:hover {
-        
-        color: #FFF !important;;
-        background-color: rgb(143, 32, 32) !important;
-        border-color: rgb(143, 32, 32) !important;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-sm navbar-light">
-        <div class="container">
-          <a class="navbar-brand font-brand me-5" href="{% url 'index' %}">
-            <svg
-              width="259"
-              height="52"
-              viewBox="0 0 259 52"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M245.832 51.6188C245.78 51.6188 245.732 51.6188 245.68 51.6188H215.877V45.6481H245.716C245.744 45.6481 245.768 45.6481 245.796 45.6481C247.586 45.6481 249.289 44.9133 250.63 43.5771C252.176 42.035 253.065 39.9034 253.065 37.7275C253.065 33.6461 249.773 30.3236 245.724 30.3236H226.832C219.514 30.3236 213.562 24.3246 213.562 16.949V14.8296C213.562 7.84157 219.262 0.0259399 226.892 0.0259399H256.73V5.99666H226.892C222.79 5.99666 219.49 10.829 219.49 14.8296V16.949C219.49 21.0305 222.782 24.3489 226.832 24.3489H245.724C253.041 24.3489 258.993 30.3478 258.993 37.7234C258.993 41.4859 257.463 45.1636 254.796 47.82C252.332 50.2704 249.156 51.6148 245.832 51.6148V51.6188Z"
-                fill="black"
-              />
-              <path
-                d="M110.125 51.7965C106.509 48.9625 102.339 46.072 98.6625 43.5206C89.8151 37.3884 87.5001 35.6808 87.412 33.1657C87.2838 29.6132 90.8444 27.2757 96.2273 24.8576C98.6745 23.7595 100.873 22.2537 102.103 20.8327C104.057 18.576 104.121 16.3637 103.833 14.9023C103.453 12.9848 102.239 10.8815 100.881 9.78745C93.2114 3.60277 83.7272 6.70722 81.0037 7.80529C77.7515 9.11731 74.984 11.4184 73.2057 14.2847C72.2204 15.8753 71.6517 18.685 71.6517 21.9873V51.6592H65.728V21.9873C65.728 18.8344 66.1526 14.3896 68.1792 11.1197C71.3072 6.07341 75.6809 3.51799 78.8049 2.25845C82.2814 0.857612 94.417 -3.07846 104.586 5.12068C107.045 7.10285 108.984 10.4051 109.645 13.7276C110.422 17.6475 109.328 21.5634 106.569 24.7526C104.746 26.8559 101.931 28.83 98.6384 30.3075C96.0992 31.446 94.7334 32.2735 94.0085 32.7984C95.7227 34.2234 99.1471 36.5972 102.023 38.5914C105.768 41.1872 110.013 44.1302 113.766 47.0732L110.129 51.7884L110.125 51.7965Z"
-                fill="black"
-              />
-              <path
-                d="M151.423 51.639C144.97 51.639 138.093 51.3806 132.823 49.124C121.788 44.3966 115.46 35.6929 115.46 25.2411C115.46 16.8562 121.103 6.02496 133.495 2.06062C140.196 -0.0789851 147.129 -0.030541 153.838 0.013866C154.823 0.02194 155.812 0.025977 156.801 0.025977V5.9967C155.8 5.9967 154.799 5.98863 153.798 5.98459C147.261 5.94018 141.093 5.89577 135.286 7.75279C126.162 10.6715 121.384 18.7577 121.384 25.2411C121.384 33.2989 126.27 39.8268 135.138 43.6256C140.072 45.741 147.93 45.6925 154.246 45.6521C155.119 45.6481 155.972 45.64 156.797 45.64V51.6108C155.98 51.6108 155.139 51.6148 154.282 51.6229C153.341 51.6269 152.388 51.635 151.423 51.635V51.639Z"
-                fill="black"
-              />
-              <path
-                d="M60.0368 51.4574H54.1131C54.1131 50.428 54.1252 49.2371 54.1372 47.921C54.2213 39.2374 54.3815 23.0733 50.9451 17.0783C48.8904 13.4935 42.1417 6.62654 31.3198 6.2834C19.4845 5.91603 12.103 11.6809 9.17123 17.2035L9.14319 17.256C5.75883 23.3195 5.887 39.5967 5.95509 48.3409C5.9631 49.4954 5.97111 50.5451 5.97111 51.4534H0.0394631C0.0394631 50.5572 0.0314528 49.5277 0.0234425 48.3893C-0.0526556 38.4543 -0.184826 21.8258 3.95651 14.3614C7.73738 7.26843 16.9452 -0.143504 31.5 0.316714C44.9013 0.736562 53.248 9.16985 56.0717 14.091C59.9927 20.9256 60.193 34.5787 60.0608 47.9816C60.0488 49.2774 60.0368 50.4482 60.0368 51.4615V51.4574Z"
-                fill="black"
-              />
-              <path
-                d="M201.695 51.5381L196.817 48.147C202.6 39.6935 203.75 29.2821 199.813 20.9699C194.454 9.65421 184.329 5.59702 162.461 6.00072L162.353 0.0299981C182.655 -0.345443 197.694 2.6379 205.16 18.3983C210.006 28.6321 208.68 41.3325 201.695 51.5381Z"
-                fill="black"
-              />
-              <path
-                d="M44.4007 29.0924H15.6196V35.0631H44.4007V29.0924Z"
-                fill="black"
-              />
-            </svg>
-          </a>
-          <button
-            class="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="{% url 'org_panel_index' %}"
-                  aria-current="page"
-                  >Página inicial
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'org_panel_contact' %}" aria-current="page"
-                  >Contato<span class="visually-hidden"></span>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link active" href="#" aria-current="page"
-                  >Ações<span class="visually-hidden"></span>
-                </a>
-              </li>
-
-              
-            </ul>
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item mt-1">
-                <p class="">Logado como: {{org_name}}
-                </p>
-              </li>
-              <li class="nav-item ms-lg-5 ">
-                <a href="{% url 'logout' %}" class="btn btn-outline-danger rounded">
-                  Sair
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <div class="mt-5 text-center w-100 h-100 d-flex flex-column align-items-center justify-content-center">
-
-  <a href="{% url 'org_panel_actions_create' %}" class="btn btn-outline-dark rounded mb-5">
+  .attachments a {
+    display: block;
+    margin-bottom: 5px;
+  }
+</style>
+<div
+  class="mt-5 text-center w-100 h-100 d-flex flex-column align-items-center justify-content-center"
+>
+  <a
+    href="{% url 'org_panel_actions_create' %}"
+    class="btn btn-outline-dark rounded mb-5"
+  >
     Criar ação
   </a>
 
-        <div class="actions-container align-items-center justify-content-center mb-5">
-          {% for action in actions %}
-            <div class="action-card">
-              <div class="action-image">
-                <img src="{{ action.image.url }}" alt="{{ action.title }}">
-              </div>
-              <div class="action-details">
-                <h2>{{ action.title }}</h2>
-                <p>{{ action.description }}</p>
-                <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
-                <div class="attachments">
-                  {% for attachment in action.attachments.all %}
-                    <a href="{{ attachment.file.url }}" target="_blank">{{ attachment.file.name }}</a><br>
-                  {% endfor %}
-                </div>
-              </div>
-            </div>
-          {% endfor %}
+  <div class="actions-container align-items-center justify-content-center mb-5">
+    {% for action in actions %}
+    <div class="action-card">
+      <div class="action-image">
+        <img src="{{ action.image.url }}" alt="{{ action.title }}" />
       </div>
-    </main>
-    <footer>
-      <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-      crossorigin="anonymous"
-    ></script>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+      <div class="action-details">
+        <h2>{{ action.title }}</h2>
+        <p>{{ action.description }}</p>
+        <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
+        <a href="{% url 'org_panel_actions_delete' action.id %}" class="btn btn-dark">Exluir ação</a>
+        <div class="attachments">
+          {% for attachment in action.attachments.all %}
+          <a href="{{ attachment.file.url }}" target="_blank"
+            >{{ attachment.file.name }}</a
+          ><br />
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

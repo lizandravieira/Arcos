@@ -1,135 +1,109 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <title>Arcos</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
-    <style type="text/css">
-      body {
-        font-family: "Inter", sans-serif;
-      }
+{% extends 'view/view_base.html' %} {% block content %}
+<style>
+  .action-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
 
-      .font-brand {
-        font-weight: 700;
-      }
+  .action-image img {
+    width: 300px;
+    height: auto;
+  }
 
-      svg {
-        width: 100%;
-        height: auto;
-        max-width: 120px;
-      }
+  .action-details {
+    flex: 1;
+  }
 
-      .action-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 20px;
-      }
+  .comments-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
 
-      .action-image img {
-        width: 300px;
-        height: auto;
-      }
+  .comments-section h3 {
+    margin-bottom: 10px;
+  }
 
-      .action-details {
-        flex: 1;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <div class="container">
-          <a class="navbar-brand font-brand me-5" href="#">
-            <h1 class="">{{user.org_name}}</h1>
-          </a>
-          <button
-            class="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'view_site' user.username %}" aria-current="page"
-                  >Página inicial
-                  <span class="visually-hidden">(atual)</span></a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="{% url 'view_site_actions' user.username %}"
-                  aria-current="page"
-                  >Ações
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  href="{% url 'view_site_contact' user.username  %}"
-                  aria-current="page"
-                  >Contato
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <div class="action-container d-flex flex-column mt-5 text-center">
-        <div class="action-image" style="flex-basis: 100%;">
-          <img src="{{ action.image.url }}" alt="{{ action.title }}" />
-        </div>
-        <div class="action-details" style="flex-grow: 1;">
-          <h2>{{ action.title }}</h2>
-          <p>{{ action.description }}</p>
-          <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
-          <div class="attachments">
-            <a href="{{ action.attachments.url }}" target="_blank"
-              >Anexo</a
-            ><br />
-          </div>
-        </div>
-      </div>
-    </main>
-    <footer>
-      <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-      crossorigin="anonymous"
-    ></script>
+  .comments-section .form-group {
+    margin-bottom: 10px;
+  }
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+  .comments-section label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .comments-section input,
+  .comments-section textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .comments-section button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .comment {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  max-width: 70vw;
+  min-width: 70vw;
+  align-self: center;
+}
+
+.comment h4 {
+  margin: 10px 0 10px 0;
+}
+</style>
+<div class="action-container d-flex flex-column mt-5 text-center">
+  <div class="action-image" style="flex-basis: 100%">
+    <img src="{{ action.image.url }}" alt="{{ action.title }}" />
+  </div>
+  <div class="action-details" style="flex-grow: 1">
+    <h2>{{ action.title }}</h2>
+    <p>{{ action.description }}</p>
+    <p>Data: {{ action.day }}/{{ action.month }}/{{ action.year }}</p>
+    <div class="attachments">
+      <a href="{{ action.attachments.url }}" target="_blank">Anexo</a><br />
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="comments-section">
+  <h3 class="w-75 align-self-center">Comentários</h3>
+  <form id="comment-form" class="w-75 align-self-center" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="comment">Comentário:</label>
+      <textarea id="comment" name="comment" required></textarea>
+    </div>
+    <button type="submit">Adicionar Comentário</button>
+  </form>
+
+  {% for comment in comments %}
+  <div class="comment">
+    <h4>{{ comment.name }}</h4>
+    <p>{{ comment.text }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

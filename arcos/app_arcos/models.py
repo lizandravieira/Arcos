@@ -33,6 +33,8 @@ class User(AbstractBaseUser, PermissionsMixin):
   email = models.EmailField(_('email address'), max_length=255, unique=True)
   is_staff = models.BooleanField(_('staff status'), default=False, help_text=_('Designates whether the user can log into this admin site.'))
   is_active = models.BooleanField(_('active'), default=True, help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
+
+  is_public = models.BooleanField(_('is public'), default = True, help_text=("Set to true if the site is public accessible."))
   
   date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
@@ -69,3 +71,66 @@ class Action(models.Model):
   class Meta:
     verbose_name = _('action')
     verbose_name_plural = _('actions')
+
+
+class DonationsPage(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  name = models.CharField(_('name'), max_length=100)
+  description = models.TextField(_('description'), null=True, blank=True)
+  pix = models.CharField(_('pix'), max_length=100, null=True, blank=True)
+
+  class Meta:
+    verbose_name = _('donations page')
+    verbose_name_plural = _('donations pages')
+
+class Donation(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  value = models.FloatField(_('value'), validators=[MinValueValidator(0.01)])
+  date = models.DateTimeField(_('date'), default=timezone.now)
+  name = models.CharField(_('name'), max_length=100)
+  cpf = models.CharField(_('cpf'), max_length=11)
+  confirmed = models.BooleanField(_('confirmed'), default=False)
+
+  class Meta:
+    verbose_name = _('donation')
+    verbose_name_plural = _('donations')
+
+class ActionComment(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  action = models.ForeignKey(Action, on_delete=models.CASCADE)
+  name = models.CharField(_('name'), max_length=100)
+  text = models.TextField(_('text'), null=True, blank=True)
+  date = models.DateTimeField(_('date'), default=timezone.now)
+
+  class Meta:
+    verbose_name = _('action comment')
+    verbose_name_plural = _('action comments')
+
+class SiteColor(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  color = models.CharField(_('color'), max_length=7)
+
+  class Meta:
+    verbose_name = _('site color')
+    verbose_name_plural = _('site colors')
+
+class SiteLogo(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  logo = models.ImageField(_('logo'), upload_to='site_logos/', null=True, blank=True)
+
+  class Meta:
+    verbose_name = _('site logo')
+    verbose_name_plural = _('site logos')
+
+class SiteFont(models.Model):
+    FONT_CHOICES = [
+        (1, 'Inter'),
+        (2, 'Arial'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    font = models.IntegerField(choices=FONT_CHOICES)
+
+    class Meta:
+        verbose_name = _('site font')
+        verbose_name_plural = _('site fonts')
